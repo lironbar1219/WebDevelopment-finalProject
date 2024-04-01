@@ -1,0 +1,3 @@
+server/.env
+client/src/package.json
+client/src/package-lock.json
