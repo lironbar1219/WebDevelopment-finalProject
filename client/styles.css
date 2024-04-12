@@ -61,3 +61,20 @@ select:hover {
 #routesList li a:hover {
     background-color: #e0e0e0;
 }
+
+.country-input {
+    padding: 10px;
+    background-color: #f0f0f0;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-right: 80px;
+}
+
+.fromListRouts {
+
+}
+
+
+
+

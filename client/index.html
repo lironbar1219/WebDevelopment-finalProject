@@ -9,14 +9,20 @@
 <body>
     <div class="container">
         <h1>3 Day Route Trips</h1>
-        <p>Please select a route type:</p>
-        <select id="routeType" onchange="selectRoute()">
+        <p>Please select a route type and a country:</p>
+        <h2> Select a country:</h2>
+        <input class="country" type="text" id="country" placeholder="Enter Country">
+
+        <label for="routeType">Route Type:</label>
+        <select id="routeType">
             <option value="">Select Route Type</option>
             <option value="on_foot">On Foot</option>
             <option value="by_car">By Car</option>
             <option value="by_bike">By Bike</option>
         </select>
-        
+
+        <button onclick="selectRoute()">Get Routes</button>
+
         <div id="routesMenu" style="display: none;">
             <h2>Select a Route:</h2>
             <ul id="routesList">

@@ -1,27 +1,50 @@
 function selectRoute() {
-    var selectedRouteType = document.getElementById("routeType").value;
-    var routesMenu = document.getElementById("routesMenu");
+    let selectedRouteType = document.getElementById("routeType").value;
+    let routesMenu = document.getElementById("routesMenu");
 
     if (selectedRouteType) {
-        var routesList = document.getElementById("routesList");
+        let routesList = document.getElementById("routesList");
         routesList.innerHTML = ""; // Clear previous routes
 
-        if (selectedRouteType === "on_foot") {
-            routesList.innerHTML += '<li><a href="on_foot_route1.html">Route 1</a></li>';
-            routesList.innerHTML += '<li><a href="on_foot_route2.html">Route 2</a></li>';
-            routesList.innerHTML += '<li><a href="on_foot_route3.html">Route 3</a></li>';
-        } else if (selectedRouteType === "by_car") {
-            routesList.innerHTML += '<li><a href="by_car_route1.html">Route 1</a></li>';
-            routesList.innerHTML += '<li><a href="by_car_route2.html">Route 2</a></li>';
-            routesList.innerHTML += '<li><a href="by_car_route3.html">Route 3</a></li>';
-        } else if (selectedRouteType === "by_bike") {
-            routesList.innerHTML += '<li><a href="by_bike_route1.html">Route 1</a></li>';
-            routesList.innerHTML += '<li><a href="by_bike_route2.html">Route 2</a></li>';
-            routesList.innerHTML += '<li><a href="by_bike_route3.html">Route 3</a></li>';
-        }
-
+        routesList.innerHTML += '<Button class="fromListRouts" onclick=fetchRoutes()>Route 1</Button>';
+        routesList.innerHTML += '<Button class="fromListRouts" onclick=fetchRoutes()>Route 2</Button>';
+        routesList.innerHTML += '<Button class="fromListRouts" onclick=fetchRoutes()>Route 3</Button>';
         routesMenu.style.display = "block";
     } else {
         routesMenu.style.display = "none";
     }
 }
+
+async function fetchRoutes() {
+    let selectedRouteType = document.getElementById("routeType").value;
+    let selectedCountry = document.getElementById("country").value;
+    let routesMenu = document.getElementById("routesMenu");
+    let routesList = document.getElementById("routesList");
+
+    if (!selectedRouteType || !selectedCountry) {
+        routesMenu.style.display = "none";
+        return; // Exit if selections are not completed
+    }
+
+    // Clear previous routes
+    routesList.innerHTML = "";
+
+    try {
+        const response = await fetch(`/get-routes?type=${selectedRouteType}&country=${selectedCountry}`);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const routes = await response.json();
+
+        // Dynamically add routes to the list
+        routes.forEach(route => {
+            routesList.innerHTML += `<li><a href="${route}">Route</a></li>`;
+        });
+
+        routesMenu.style.display = "block";
+    } catch (error) {
+        console.error('Error fetching routes:', error);
+        routesMenu.style.display = "none";
+    }
+}
+
