@@ -15,6 +15,7 @@ function selectRoute() {
     }
 }
 
+// TODO: Implement fetchRoutes function, to fetch routes from the server
 async function fetchRoutes() {
     let selectedRouteType = document.getElementById("routeType").value;
     let selectedCountry = document.getElementById("country").value;
