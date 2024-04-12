@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>3 Day Route Trips</title>
+</head>
+<body>
+    <div class="container">
+        <h1>3 Day Route Trips</h1>
+        <p>Please select a route type:</p>
+        <select id="routeType" onchange="selectRoute()">
+            <option value="">Select Route Type</option>
+            <option value="on_foot">On Foot</option>
+            <option value="by_car">By Car</option>
+            <option value="by_bike">By Bike</option>
+        </select>
+        
+        <div id="routesMenu" style="display: none;">
+            <h2>Select a Route:</h2>
+            <ul id="routesList">
+                <!-- Routes will be dynamically added here -->
+            </ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
